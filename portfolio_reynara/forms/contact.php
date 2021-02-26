@@ -22,6 +22,18 @@
   $contact->from_name = $_POST['name'];
   $contact->from_email = $_POST['email'];
   $contact->subject = $_POST['subject'];
+  $contact->message = $_POST['message'];
+  
+  $to = $email;
+  $subject = "Website Contact Form: $name";
+  $body = "You have received a new message from your website contact from./n/n".
+		"Here are the details:/n/nName: $name/n/nEmail: $email/n/nSubject: $subject/n/nMessage: /n$message";
+	$header = "From: reynaranapitupulu@gmail.com /n";
+	$header .= "Reply-To: $email;
+	
+	if(!mail($to, $subject, $body, $header))
+		http_response_code(500);
+	?>
 
   // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
   /*
